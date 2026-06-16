@@ -13,6 +13,16 @@ class tabela{
 
   }
   }
+  public function listarAlunos(){
+    try{
+    $sql = "SELECT * FROM $this->nome";
+    $stmt = $this->pdo->query($sql);
+    return $stmt->fetchAll(PDO::FETCH_ASSOC);
+   }catch(PDOException $e){
+      die("Erro na conexão:" . $e->getMessage() . "\n");
+    }
+   }
 }
-$alunos = new tabela("alunos","db.kwebdjvwxeczoxlxzckk.supabase.co", "5432", "postgres", "postgres","Ec827X0sLCVH4kiR")
+$alunos = new tabela("alunos","aws-1-sa-east-1.pooler.supabase.com", "6543", "postgres", "postgres.kwebdjvwxeczoxlxzckk","Ec827X0sLCVH4kiR");
+print_r($alunos->listarAlunos());
 ?>
